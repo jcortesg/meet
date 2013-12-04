@@ -9,8 +9,9 @@
         %th Role
         %th
         %th
+        %th Category
     %tbody
-      - @users.each do |user|
+     - @users.each do |user|
         %tr
           %td= link_to user.name, user
           %td= user.email
@@ -20,3 +21,6 @@
             %a.btn.btn-mini{"data-toggle" => "modal", :href => "#role-options-#{user.id}", :type => "button"} Change role
             = render user
           %td= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user
+          %td
+            -user.categories.each do |category|
+              = category.name

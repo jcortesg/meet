@@ -3,3 +3,9 @@
   User: #{@user.name}
 %p
   Email: #{@user.email if @user.email}
+  Categories 
+  %ul
+    -@user.categories.each do |category|
+      %li
+        = category.name
+
