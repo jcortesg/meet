@@ -1,4 +1,40 @@
-%h3 Home
-- @users.each do |user|
-  %p
-    User: #{link_to user.name, user}
+- content_for :head do
+  .slider
+    .container
+      Hola s
+.col-xs-12.col-md-8
+  
+  - @meetings.each do |meeting|
+    .border_gray.meeting_list
+      .calendar    
+        %h1
+          = meeting.date_star.strftime('%d')
+          %small
+            Dic
+      .hour
+        7:00 am
+      = meeting.community.name
+      %h1      
+        = meeting.name
+      %small
+        = meeting.contry
+        ="-"
+        = meeting.city
+.col-xs-12.col-md-4
+  
+  - @communities.each do |community|
+    .thumb_home.border_gray
+      = link_to community,{:style=> "background:url(#{community.image_url(:thumb)} ) no-repeat;background-size: 100%;"}  do 
+        
+        %p
+          %b
+            = community.name
+      .info
+        %span
+          12345 Miembros
+          %br
+        %small
+          Hola perros
+
+
+

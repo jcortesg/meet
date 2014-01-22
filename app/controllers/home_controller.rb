@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @users = User.all
+    @communities =  Community.all
+    @meetings = Meeting.all
   end
 end

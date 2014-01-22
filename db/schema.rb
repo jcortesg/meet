@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131202225807) do
+ActiveRecord::Schema.define(version: 20131209143629) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -19,12 +19,56 @@ ActiveRecord::Schema.define(version: 20131202225807) do
     t.datetime "updated_at"
   end
 
+  create_table "categories_users", id: false, force: true do |t|
+    t.integer  "category_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories_users", ["user_id", "category_id"], name: "index_categories_users_on_user_id_and_category_id"
+
   create_table "communities", force: true do |t|
     t.string   "contry"
     t.string   "city"
     t.string   "description"
-    t.string   "member_name"
-    t.string   "subdomain"
+    t.string   "web"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+    t.string   "name"
+  end
+
+  create_table "communities_users", id: false, force: true do |t|
+    t.integer "community_id"
+    t.integer "user_id"
+  end
+
+  add_index "communities_users", ["user_id", "community_id"], name: "index_communities_users_on_user_id_and_community_id"
+
+  create_table "meetings", force: true do |t|
+    t.time     "date_star"
+    t.string   "city"
+    t.string   "contry"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "community_id"
+    t.string   "name"
+    t.integer  "place_id"
+  end
+
+  create_table "meetings_users", id: false, force: true do |t|
+    t.integer "meeting_id"
+    t.integer "user_id"
+  end
+
+  add_index "meetings_users", ["user_id", "meeting_id"], name: "index_meetings_users_on_user_id_and_meeting_id"
+
+  create_table "places", force: true do |t|
+    t.string   "name"
+    t.string   "addres"
+    t.string   "city"
+    t.string   "contry"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,6 +98,15 @@ ActiveRecord::Schema.define(version: 20131202225807) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "identity"
+    t.string   "contry"
+    t.string   "city"
+    t.string   "language"
+    t.string   "genre"
+    t.string   "bio"
+    t.date     "birthday"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -10,7 +10,11 @@
   %body
     %header
       = render 'layouts/navigation'
+      = yield :head 
       .container
-        %main{:role => "main"}
-          = render 'layouts/messages'
-          = yield
+        = render 'layouts/messages'
+        = yield
+    %footer
+      %hr
+      .container
+        Designed and built with all the love in the world by @mdo and @fat.
